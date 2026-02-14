@@ -1,0 +1,76 @@
+═══════════════════════════════════════════════════════════════
+  ПОЧЕМУ НЕТ "BUILD MOD" В ACTIONS И КАК ИСПРАВИТЬ
+═══════════════════════════════════════════════════════════════
+
+Почему не видно "Build mod"
+────────────────────────────
+На GitHub не попала папка .github с файлом сборки. Без неё вкладка
+Actions пустая или там нет нашего workflow. Папки с точкой в начале
+в Windows часто скрыты, поэтому её легко не залить.
+
+
+КАК ДОБАВИТЬ ФАЙЛ СБОРКИ ПРЯМО НА GITHUB
+────────────────────────────────────────
+
+1. Открой свой репозиторий на GitHub (страница с кодом мода).
+
+2. Создай папку .github:
+   • Нажми "Add file" → "Create new file".
+   • В поле имени файла введи:   .github/workflows/build.yml
+   (точка в начале, слэш, потом workflows, слэш, build.yml)
+   • GitHub сам создаст папки .github и workflows.
+
+3. В большое текстовое поле вставь ТОЧНО это содержимое:
+
+───────────────────────────────────────────────────────────────
+name: Build mod
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Build (Minecraft 1.21.1 Fabric)
+        run: gradle build --no-daemon
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: musicplayer-mod
+          path: build/libs/musicplayer-*.jar
+───────────────────────────────────────────────────────────────
+
+4. Внизу нажми зелёную кнопку "Commit new file" (можно не менять
+   текст сообщения).
+
+5. Открой вкладку "Actions" — слева должен появиться "Build mod".
+   Запуск может начаться сам; если нет — слева выбери "Build mod",
+   справа нажми "Run workflow" → "Run workflow".
+
+6. Когда запуск станет с зелёной галочкой, открой его и внизу
+   в блоке Artifacts скачай "musicplayer-mod" — внутри будет JAR.
+
+
+ВАЖНО
+────────────────
+В репозитории должны быть ВСЕ файлы мода: build.gradle, gradle.properties,
+папка src с кодом и т.д. Иначе сборка упадёт. Если заливал только
+.github — долей остальные файлы через "Upload files".
