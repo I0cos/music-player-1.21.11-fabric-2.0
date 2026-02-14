@@ -1,0 +1,10 @@
+{
+  "key.category.musicplayer": "Music Player",
+  "key.musicplayer.open_menu": "Открыть музыкальный плеер",
+  "gui.musicplayer.title": "Музыкальный плеер",
+  "gui.musicplayer.hint": "Положите файлы .wav или .mp3 в папку music_player",
+  "gui.musicplayer.play": "Играть",
+  "gui.musicplayer.pause": "Пауза",
+  "gui.musicplayer.stop": "Стоп",
+  "gui.musicplayer.volume": "Громкость: %s%%"
+}

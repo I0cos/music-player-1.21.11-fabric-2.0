@@ -1,0 +1,10 @@
+{
+  "key.category.musicplayer": "Music Player",
+  "key.musicplayer.open_menu": "Open Music Player",
+  "gui.musicplayer.title": "Music Player",
+  "gui.musicplayer.hint": "Put .wav or .mp3 files in the music_player folder",
+  "gui.musicplayer.play": "Play",
+  "gui.musicplayer.pause": "Pause",
+  "gui.musicplayer.stop": "Stop",
+  "gui.musicplayer.volume": "Volume: %s%%"
+}

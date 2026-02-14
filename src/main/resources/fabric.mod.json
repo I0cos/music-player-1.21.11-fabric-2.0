@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "musicplayer",
+  "version": "${version}",
+  "name": "Music Player",
+  "description": "Музыкальный плеер с меню в стиле Minecraft. Открывается по клавише M.",
+  "authors": ["MusicPlayerMod"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.musicplayer.MusicPlayerMod"
+    ],
+    "client": [
+      "com.musicplayer.MusicPlayerClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-key-binding-api-v1": "*"
+  }
+}
